@@ -5,13 +5,12 @@
 FROM openjdk:21-slim AS build
 RUN apt-get update&& apt-get-install -y maven && clean && rm-rf/var/lig/apt/lists/*
 
-
 #Definir o diretório dentro do container para a aplicação
 WORKDIR /app
 
 #Copiar o pom.xml para o container
-COPY pom.xml .
-COPY src ./src
+COPY securing-web/pom.xml /app/
+COPY securing-web/src/ /app/src/
 
 #Executar o Maven para compilar o projeto e gerar o JAR File
 RUN mvn clean package - DskipTests
